@@ -1,0 +1,24 @@
+<odoo>
+	<data>
+		<record id="partner_instructur" model ="ir.ui.view">
+			<field name="name">partner.instructur</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+				<field name="website" position="after">
+					<field name="is_instructur"/>
+				</field>
+			</field>
+		</record>
+		<record id="view_res_partner_filter2" model="ir.ui.view">
+			<field name="Name">res.partner.select2</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_res_partner_filter"/>
+			<field name="arch" type="xml">
+				<search string="Search Partner">
+					<filter string="Instructurs" name="instructur" domain="[('is_instructur','=',1)]" help="Instructur Partner"/>
+				</search>
+			</field>
+		</record>
+	</data>
+</odoo>

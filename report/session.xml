@@ -1,0 +1,36 @@
+<odoo>
+	<data>
+		<report id="report_session_menu" string="Session" model="academic.session" report_type="qweb-pdf" file="academic.session" name="academy.session_report"/>
+		<template id="session_report">
+				<t t-call="web.html_container">
+					<t t-foreach="docs" t-as="doc">
+						<t t-call="academy.session_report_document"/>
+					</t>
+				</t>
+			</template>
+			<template id="session_report_document">
+				<t t-call="web.external_layout">
+					<!-- <t t-set="doc" t-value="doc.with_context({'lang':doc.instructor_id.lang})" /> -->
+					<div class="page">
+						<!-- <div class="oe_structure"/> -->
+						<h2>
+							SESSION: <span t-field="doc.name"/>
+						</h2>
+						<table class="table table-condensed">
+						</table>
+						<h3>Attendees</h3>
+						<table class="table table-condensed">
+							<tr>
+								<th>Reg Number</th>
+								<th>Partner</th>
+							</tr>
+							<tr t-foreach="doc.attendee_ids" t-as="att">
+								<td><span t-field="att.name"/></td>
+								<td><span t-field="att.partner_id"/></td>
+							</tr>					
+						</table>
+					</div>
+				</t>
+			</template>
+		</data>
+	</odoo>
